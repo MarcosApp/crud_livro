@@ -47,7 +47,7 @@ app.put('/livros/:id', (req, res, next) => {
     const { id } = req.params;
     var index = livros.findIndex(x => x.id == id)
     if(index == -1)
-        res.status(400).json({message: 'Livro não encontrado'});
+        res.status(204).json({message: 'Livro não encontrado'});
 
     livros[index] = {id: parseInt(id), titulo: req.body.titulo, descricao: req.body.descricao, edicao: req.body.edicao, autor: req.body.autor}
     res.status(200).json(livros);
@@ -58,7 +58,8 @@ app.delete('/livros/:id', (req, res, next) => {
     const { id } = req.params;
     var index = livros.findIndex(x => x.id == id)
     if(index == -1)
-        res.status(400).json({message: 'Livro não encontrado'});
+        res.status(204).json({message: 'Livro não encontrado'});
+
     livros.splice(index, 1);
     res.status(200).json(livros);
 })
